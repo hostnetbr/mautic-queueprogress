@@ -12,5 +12,17 @@ return [
                 'controller' => 'HostnetQueueProgressBundle:QueueProgress:queueprogress',
             ]
         ]
+    ],
+    'menu'     => [
+        'main' => [
+            'priority' => -1,
+            'items'    => [
+                'mautic.plugin.queueprogress.title' => [
+                    'route' => 'hostnet_queue_progress',
+                    'id' => 'plugin_hostnet_queueprogress',
+                    'iconClass' => 'fa-envelope'
+                ]
+            ]
+        ]
     ]
 ];

@@ -13,9 +13,9 @@ $view['slots']->set(
             <tbody>
                 <tr>
                     <td width="20%">
-                        <span class="fw-b">Emails aguardando envio pelo CRON</span>
+                        <span class="fw-b"><?=$view['translator']->trans('mautic.plugin.queueprogress.label')?></span>
                     </td>
-                    <td>X</td>
+                    <td><?=$emailQuantity?></td>
                 </tr>
             </tbody>
         </table>

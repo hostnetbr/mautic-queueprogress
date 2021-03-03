@@ -12,15 +12,17 @@ namespace MauticPlugin\HostnetQueueProgressBundle\Controller;
 use Mautic\CoreBundle\Controller\CommonController;
 use Symfony\Component\HttpFoundation\Request;
 use FilesystemIterator;
+use GlobIterator;
 
 class QueueProgressController extends CommonController
 {
     public function queueprogressAction(Request $request)
     {
-        # Gets the quantity of messages in the spool folder
-        $emailQuantity = iterator_count(new FilesystemIterator(
-            $this->factory->getParameter('mailer_spool_path') . '/default'
-        ));
+        $spoolPath = $this->factory->getParameter('mailer_spool_path');
+
+        $emailQuantity = file_exists($spoolPath)
+            ? (new GlobIterator("$spoolPath/*.message"))->count()
+            : 0;
 
         return $this->delegateView([
             'contentTemplate' => 'HostnetQueueProgressBundle:QueueProgressView:form.html.php',
